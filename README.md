@@ -11,6 +11,7 @@ Personal starter for client website work — marketing sites, creative dev, land
 - **`cn` + `cva`** via `clsx` + `tailwind-merge` + `class-variance-authority`
 - **oxlint + oxfmt**
 - **`@astrojs/sitemap`** + `robots.txt`
+- **Sveltia CMS** via `astro-loader-sveltia-cms` — git-based, mounted at `/admin`, typed config in `astro.config.mjs`
 
 ## Commands
 
@@ -26,13 +27,19 @@ Personal starter for client website work — marketing sites, creative dev, land
 | `bun format:check` | Check formatting without writing                |
 | `bun check`        | `astro check` + `oxlint` + `oxfmt --check` (CI) |
 
+Open `http://localhost:4321/admin/` during `bun dev` in a Chromium browser to access the Sveltia CMS admin UI (uses the File System Access API — no auth needed for local work).
+
 ## Project layout
 
 ```
 src/
+├── assets/
+│   └── uploads/       # Default Sveltia CMS media bucket (see CMS section)
 ├── components/        # .astro and .tsx (React islands)
 │   ├── BaseHead.astro # Shared <head>: SEO, OG, favicon, global CSS
 │   └── FadeIn.tsx     # Reference Motion island
+├── content/           # Sveltia CMS writes collections here
+├── content.config.ts  # Collection definitions (loader auto-generates Zod)
 ├── layouts/
 │   └── Layout.astro   # Root <html>/<body> shell
 ├── lib/
@@ -70,13 +77,24 @@ Install via Zed's extensions panel:
 - `.oxfmtrc.json`: defaults + ignore list. oxfmt is 0.x — expect rough edges on exotic JSX.
 - oxlint only handles JS/TS/JSX/TSX. `.astro` frontmatter is type-checked by `astro check`.
 
+## CMS (Sveltia)
+
+Sveltia CMS is wired via [`astro-loader-sveltia-cms`](https://github.com/joknoll/astro-loader-sveltia-cms). The integration mounts the admin UI at `/admin` and provides a typed content loader that auto-generates Zod schemas from widget definitions — **one config in `astro.config.mjs`, no separate `config.yml`, no hand-written Zod**.
+
+- **Local editing:** `bun dev` → open `http://localhost:4321/admin/` in Chrome/Edge/Brave → **Work with Local Repository** → pick the project root. Uses the browser File System Access API; no auth, no proxy.
+- **Collections** are defined in `astro.config.mjs` under `sveltia({ config: { collections: [...] } })` and registered via `sveltiaLoader("name")` in `src/content.config.ts`. The template ships with an empty collections array — add your first via the skill.
+- **Media** defaults to `src/assets/uploads` (global bucket). Per-collection overrides to `""` give you Hugo-style page bundles where media co-locates with markdown entries.
+- **Production auth:** deploy a Cloudflare Worker once via `infra/sveltia-authenticator/README.md`, then one `base_url` line per client. See the `sveltia-cms-auth` skill.
+
 ## Claude Code skills
 
 `.claude/skills/` holds project-specific skills auto-loaded by Claude:
 
 - **`astro-font-api`** — add or debug fonts (all five providers + Tailwind v4 wiring).
+- **`sveltia-cms`** — core CMS mechanics: adding collections, widgets ↔ auto-generated Zod, media patterns, dev workflow, pitfalls.
+- **`sveltia-cms-design`** — layered model for making a site fully client-editable: singletons, component slots, image slots, design tokens.
+- **`sveltia-cms-auth`** — production auth: PAT / Cloudflare Worker / Netlify / PKCE, decision tree, handover checklist.
 
 ## Future (deferred)
 
-- **CMS** — TBD (Sanity / Contentful / Decap / Storyblok)
-- More skills: deployment, image optimization, content collections, view transitions
+- More skills: deployment, image optimization, view transitions
