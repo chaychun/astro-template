@@ -11,7 +11,7 @@ type FadeInProps = {
  * Small reference island showing the Astro + Motion pattern.
  *
  * Import as a client component in an .astro file:
- *   import FadeIn from "~/components/FadeIn";
+ *   import FadeIn from "@/components/FadeIn";
  *   <FadeIn client:load delay={0.2}>Hello</FadeIn>
  *
  * Delete or replace once the real component system exists.
