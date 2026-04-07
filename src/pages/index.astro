@@ -1,0 +1,24 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import FadeIn from "~/components/FadeIn";
+---
+
+<Layout
+  title="Astro Template"
+  description="Baseline Astro template for client website work."
+>
+  <main class="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-6 py-24">
+    <FadeIn client:load>
+      <p class="text-sm uppercase tracking-widest text-muted">Template ready</p>
+      <h1 class="mt-3 text-5xl font-semibold tracking-tight text-ink sm:text-6xl">
+        Astro + Tailwind + Motion.
+      </h1>
+      <p class="mt-6 max-w-prose text-lg text-muted">
+        Replace this page with the real homepage. Layouts live in
+        <code class="font-mono text-ink">src/layouts</code>, shared head tags in
+        <code class="font-mono text-ink">src/components/BaseHead.astro</code>,
+        React islands in <code class="font-mono text-ink">src/components</code>.
+      </p>
+    </FadeIn>
+  </main>
+</Layout>

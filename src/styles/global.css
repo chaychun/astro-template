@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Design tokens live here. Tailwind v4 reads these via @theme and exposes
+   them as utility classes (e.g. `bg-surface`, `text-ink`, `font-display`).
+   Override per client project. */
+@theme {
+  --color-surface: oklch(0.99 0 0);
+  --color-ink: oklch(0.18 0.01 260);
+  --color-muted: oklch(0.55 0.01 260);
+  --color-accent: oklch(0.68 0.19 30);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* Base layer overrides. Keep this minimal — add client-specific resets here. */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+}

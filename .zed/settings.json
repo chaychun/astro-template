@@ -1,0 +1,72 @@
+{
+  "$schema": "https://zed.dev/schema/settings.json",
+  "formatter": {
+    "external": {
+      "command": "bun",
+      "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+    }
+  },
+  "format_on_save": "on",
+  "languages": {
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "bun",
+          "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "bun",
+          "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "TSX": {
+      "formatter": {
+        "external": {
+          "command": "bun",
+          "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSX": {
+      "formatter": {
+        "external": {
+          "command": "bun",
+          "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "formatter": {
+        "external": {
+          "command": "bun",
+          "arguments": ["x", "oxfmt", "--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Astro": {
+      "language_servers": ["astro-language-server", "!typescript-language-server"],
+      "format_on_save": "on"
+    }
+  },
+  "file_types": {
+    "Astro": ["astro"]
+  },
+  "tailwindcss": {
+    "experimental": {
+      "classRegex": [
+        ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cn\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+      ]
+    }
+  }
+}
