@@ -86,15 +86,22 @@ Sveltia CMS is wired via [`astro-loader-sveltia-cms`](https://github.com/joknoll
 - **Media** defaults to `src/assets/uploads` (global bucket). Per-collection overrides to `""` give you Hugo-style page bundles where media co-locates with markdown entries.
 - **Production auth:** deploy a Cloudflare Worker once via `infra/sveltia-authenticator/README.md`, then one `base_url` line per client. See the `sveltia-cms-auth` skill.
 
+<!-- ASTRO:REMOVE:START -->
 ## Claude Code skills
 
-`.claude/skills/` holds project-specific skills auto-loaded by Claude:
+`.claude/skills/` holds project-specific skills auto-loaded by Claude. Run `/setup-project <description>` once after clone to bootstrap and prune.
 
+- **`setup-project`** — one-shot: writes `CLAUDE.md`, sets `site`, toggles CMS, gitignores dev-meta (kept on disk, untracked). Won't re-trigger once `CLAUDE.md` exists.
 - **`astro-font-api`** — add or debug fonts (all five providers + Tailwind v4 wiring).
 - **`sveltia-cms`** — core CMS mechanics: adding collections, widgets ↔ auto-generated Zod, media patterns, dev workflow, pitfalls.
 - **`sveltia-cms-design`** — layered model for making a site fully client-editable: singletons, component slots, image slots, design tokens.
 - **`sveltia-cms-auth`** — production auth: PAT / Cloudflare Worker / Netlify / PKCE, decision tree, handover checklist.
+<!-- ASTRO:REMOVE:END -->
 
+<!-- ASTRO:REMOVE:START -->
 ## Future (deferred)
 
+_Template-author roadmap. Stripped automatically on `npm create astro -- --template`._
+
 - More skills: deployment, image optimization, view transitions
+<!-- ASTRO:REMOVE:END -->
